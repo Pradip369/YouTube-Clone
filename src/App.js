@@ -1,24 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './Header';
+import RecommendedVideo from './RecommendedVideo';
+import Sidebar from './Sidebar';
+import { Route, Switch } from "react-router-dom";
+import SearchPage from './SearchPage';
+import Login from './Login';
+import Logout from './Logout';
+import Register from './Register';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+
+
+      <Header />
+      <Switch>
+
+        <Route exact path='/'>
+          <div className='app__page'>
+            <Sidebar />
+            <RecommendedVideo />
+          </div>
+
+        </Route>
+        <Route exact path='/search/:searchitem'>
+          <div className='app__page'>
+            <Sidebar />
+            <SearchPage />
+          </div>
+        </Route>
+
+        <Route exact path='/login'>
+          <Login />
+        </Route>
+
+        <Route exact path='/register'>
+          <Register />
+        </Route>
+
+        <Route exact path='/logout'>
+          <Logout />
+        </Route>
+
+      </Switch>
+
+
     </div>
   );
 }
